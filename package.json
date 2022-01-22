@@ -19,6 +19,7 @@
   "homepage": "https://github.com/vence2013/Personal_digital_infomation#readme",
   "dependencies": {
     "cheerio": "^1.0.0-rc.10",
+    "dotenv": "^14.2.0",
     "glob": "^7.2.0",
     "koa": "^2.13.4",
     "koa-body": "^4.2.0",

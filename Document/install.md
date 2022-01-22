@@ -1,6 +1,7 @@
 # install
 1. 为了方便开发，在windows环境开发，在linux环境运行。
     * 安装vbox虚拟机，并设置共享文件（自动挂载，并设置挂载点/home/w/shares）。
+    * 更新使用国内的源
     * 在ubuntu上安装ssh服务器，并启动。方便通过windows的ssh工具控制
 
 2. 安装docker，
@@ -90,11 +91,23 @@ npm install -g bower
 
 使用--save参数，会将软件包存储到bower.json的dependencies中。然后可以使用`bower install`安装这些软件包。
 ~~~
-bower install angular --save
+bower install --save angular
 ~~~
 
 #### NPM报错 Error: EPERM: operation not permitted, unlink......的解决办法
 node modules
 ~~~
 npm cache clean --force
+~~~
+
+#### 改善访问github
+美国	0.23s	
+5s	140.82.113.3（美国）
+
+[DNS查询](https://myssl.com/dns_check.html#dns_check)
+[Ubuntu修改hosts方法](https://blog.csdn.net/chclvzxx/article/details/50098515)
+
+[DNS查询](http://www.webkaka.com/dns/)
+~~~
+sudo /etc/init.d/networking restart
 ~~~
