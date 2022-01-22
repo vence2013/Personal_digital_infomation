@@ -101,13 +101,21 @@ npm cache clean --force
 ~~~
 
 #### 改善访问github
+
+
 美国	0.23s	
 5s	140.82.113.3（美国）
 
 [DNS查询](https://myssl.com/dns_check.html#dns_check)
+[DNS查询](http://www.webkaka.com/dns/)
 [Ubuntu修改hosts方法](https://blog.csdn.net/chclvzxx/article/details/50098515)
 
-[DNS查询](http://www.webkaka.com/dns/)
+修改dns后host后，重启网络
 ~~~
 sudo /etc/init.d/networking restart
+~~~
+
+更改配置
+~~~
+git config --global url."https://github.com.cnpmjs.org/".insteadOf "https://github.com/"
 ~~~

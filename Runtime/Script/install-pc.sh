@@ -110,10 +110,9 @@ else
     docker restart "${Project}"
     echo "重启容器完成"
 
-    # 4. 安装NPM&bower软件包
+    # 4. 安装npm软件包。由于bower安装严重依赖网络，可以采用解压或其他方式安装。
     docker exec ${Project} /usr/local/bin/npm install
     docker exec ${Project} /usr/local/bin/npm install -g bower koa-views koa-session sequelize mysql2 request shelljs fs-sync node-gyp-install
-    docker exec ${Project} /usr/local/bin/bower install --allow-root
     echo "安装完成！"
 fi
 
