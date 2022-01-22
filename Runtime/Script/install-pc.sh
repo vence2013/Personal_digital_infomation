@@ -111,7 +111,9 @@ else
     echo "重启容器完成"
 
     # 4. 安装NPM&bower软件包
-    docker exec $Project /usr/local/bin/npm install
+    docker exec ${Project} /usr/local/bin/npm install
+    docker exec ${Project} /usr/local/bin/npm install -g bower
+    docker exec ${Project} /usr/local/bin/bower install --allow-root
     echo "安装完成！"
 fi
 

@@ -1,0 +1,14 @@
+{
+  "name": "personal_digital_infomation",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "wuxb"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/vence2013/Personal_digital_infomation",
+  "private": true,
+  "dependencies": {
+    "angular": "^1.8.2"
+  }
+}
