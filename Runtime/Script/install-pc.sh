@@ -112,7 +112,7 @@ else
 
     # 4. 安装NPM&bower软件包
     docker exec ${Project} /usr/local/bin/npm install
-    docker exec ${Project} /usr/local/bin/npm install -g bower
+    docker exec ${Project} /usr/local/bin/npm install -g bower koa-views koa-session sequelize mysql2 request shelljs fs-sync node-gyp-install
     docker exec ${Project} /usr/local/bin/bower install --allow-root
     echo "安装完成！"
 fi

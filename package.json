@@ -18,6 +18,15 @@
   },
   "homepage": "https://github.com/vence2013/Personal_digital_infomation#readme",
   "dependencies": {
-    "koa": "^2.13.4"
+    "cheerio": "^1.0.0-rc.10",
+    "glob": "^7.2.0",
+    "koa": "^2.13.4",
+    "koa-body": "^4.2.0",
+    "koa-compose": "^4.1.0",
+    "koa-error": "^3.2.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^10.1.1",
+    "koa-static-server": "^1.5.2",
+    "underscore": "^1.13.2"
   }
 }

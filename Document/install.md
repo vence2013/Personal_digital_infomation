@@ -92,3 +92,9 @@ npm install -g bower
 ~~~
 bower install angular --save
 ~~~
+
+#### NPM报错 Error: EPERM: operation not permitted, unlink......的解决办法
+node modules
+~~~
+npm cache clean --force
+~~~
