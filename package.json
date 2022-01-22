@@ -1,0 +1,23 @@
+{
+  "name": "personal_digital_infomation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "none",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vence2013/Personal_digital_infomation.git"
+  },
+  "author": "wuxb",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vence2013/Personal_digital_infomation/issues"
+  },
+  "homepage": "https://github.com/vence2013/Personal_digital_infomation#readme",
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
+}
