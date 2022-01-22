@@ -88,14 +88,14 @@ export Project=${TITLE//$'\r'}-v${VERSION_MAJOR//$'\r'}.${VERSION_MINOR//$'\r'}
 
 if [ "$Mode" == "uninstall" ]; then
     echo "开始卸载..."
-    docker-compose -p "web-mysql" --env-file $Cfg_file down
+    docker-compose -p "web-mariadb" --env-file $Cfg_file down
     rm -fv index.js
     echo "卸载完成！"
 else
     echo "开始安装..."
     # 1. 重新构建容器（删除后重建）
-    docker-compose -p "web-mysql" --env-file $Cfg_file down
-    docker-compose -p "web-mysql" --env-file $Cfg_file up -d
+    docker-compose -p "web-mariadb" --env-file $Cfg_file down
+    docker-compose -p "web-mariadb" --env-file $Cfg_file up -d
     echo "重新构建容器完成。"
 
     # 2. 更新入口文件：index.js
@@ -106,7 +106,7 @@ else
     fi
 
     # 3. 重启容器：web & mysql
-    docker restart "${Project}_mysql"
+    docker restart "${Project}_mariadb"
     docker restart "${Project}"
     echo "重启容器完成"
 

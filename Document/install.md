@@ -82,6 +82,7 @@ docker restart Personal_Digital_Information-v1.0
 npm install -g bower
 ~~~
 > 使用-g的无法通过npm install安装！
+> 引用全局模块时，需要设置NODE_PATH全局变量
 
 2. npm软件包。在安装时使用--save标志，将会存储到package.json中。
 然后在容器安装时，通过install-pc.sh中的npm install一起安装
@@ -101,20 +102,6 @@ npm cache clean --force
 ~~~
 
 #### 改善访问github
-
-
-美国	0.23s	
-5s	140.82.113.3（美国）
-
-[DNS查询](https://myssl.com/dns_check.html#dns_check)
-[DNS查询](http://www.webkaka.com/dns/)
-[Ubuntu修改hosts方法](https://blog.csdn.net/chclvzxx/article/details/50098515)
-
-修改dns后host后，重启网络
-~~~
-sudo /etc/init.d/networking restart
-~~~
-
 更改配置
 ~~~
 git config --global url."https://github.com.cnpmjs.org/".insteadOf "https://github.com/"

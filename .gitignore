@@ -1,6 +1,8 @@
 Cfg_setup
 index.js
 
-Datas/
 node_modules/
 bower_components/
+
+Datas/
+Runtime/Certificate/

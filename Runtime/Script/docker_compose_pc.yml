@@ -1,17 +1,16 @@
-version: '3'
+version: '3.1'
 
 services:
   mysql:
-    image: "mysql:5.5"
+    image: "mariadb:10.6.5"
     restart: "always"
-    container_name: "${Project}_mysql"
-    volumes:
-      - ${Data_dir}:/data     
+    container_name: "${Project}_mariadb"    
     ports:
       - "3306:3306"
     environment:
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${Project}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_ALLOW_EMPTY_PASSWORD: "no"
+      MYSQL_DATABASE: ${Project}
 
   web:
     build: Runtime/Docker
