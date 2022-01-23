@@ -31,7 +31,9 @@ npm install -g bower
 2. npm软件包。在安装时使用--save标志，将会存储到package.json中。
 然后在容器安装时，通过install-pc.sh中的npm install一起安装
 3. bower软件包。在安装时使用--save标志，将会存储到bower.json中。
-类似package.json
+~~~
+bower install --allow-root
+~~~
 
 
 使用--save参数，会将软件包存储到bower.json的dependencies中。然后可以使用`bower install`安装这些软件包。
@@ -45,7 +47,17 @@ npm cache clean --force
 ~~~
 
 #### 改善访问github
-更改配置
+使用bower安装软件包，需要首先通过Https访问github.com。然后通过git下载软包。
+
+1. 通过dns查询网站查询github.com：[DNS解析](http://www.webkaka.com/dns/)
+选择一个当前不同的IP地址，可以通过ping github.com查看。
+
+2. 在/etc/hosts添加。
+~~~
+echo "52.69.186.44 github.com" >> /etc/hosts
+~~~
+
+3. 更改git配置，替换下载软件包的地址为国内地址
 ~~~
 git config --global url."https://github.com.cnpmjs.org/".insteadOf "https://github.com/"
 ~~~

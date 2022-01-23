@@ -28,6 +28,9 @@
     "koa-logger": "^3.2.1",
     "koa-router": "^10.1.1",
     "koa-static-server": "^1.5.2",
+    "koa-views": "^8.0.0",
+    "mkdirp": "^1.0.4",
+    "moment": "^2.29.1",
     "underscore": "^1.13.2"
   }
 }
