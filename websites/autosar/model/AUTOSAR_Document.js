@@ -5,20 +5,18 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING(255),
             allowNull: false
         }, 
-        identification: {
+        identification_no: {
             type: DataTypes.INTEGER(10),
+            allowNull: false
         }, 
         status: {
             type: DataTypes.STRING(255),
-            allowNull: false
         }, 
         part_of_standard: {
             type: DataTypes.STRING(255),
-            allowNull: false
         }, 
         part_of_release: {
             type: DataTypes.STRING(255),
-            allowNull: false
         }, 
         introduce: {
             type: DataTypes.BLOB, 
