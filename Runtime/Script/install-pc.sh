@@ -4,7 +4,7 @@
 # 配置
 Cfg_file="Cfg_setup"
 Docker_image_node="node:16.13.2-buster"
-Docker_image_mysql="mysql:5.5"
+Docker_image_mysql="mariadb:10.6.5"
 
 
 # 全局数据
@@ -54,7 +54,7 @@ CreateRuntimeEnvironment()
     echo "检查运行文件及目录..."
 
     if [ ! -f $Cfg_file ]; then
-        echo "错误：安装文件（$Cfg_file）缺失！可以从Runtime/Templates复制模板后修改使用。"
+        echo "错误：安装文件（$Cfg_file）缺失！可以从Runtime/Copy复制模板后修改使用。"
         exit
     fi
 
@@ -93,17 +93,19 @@ if [ "$Mode" == "uninstall" ]; then
     echo "卸载完成！"
 else
     echo "开始安装..."
-    # 1. 重新构建容器（删除后重建）
-    docker-compose -p "web-mariadb" --env-file $Cfg_file down
-    docker-compose -p "web-mariadb" --env-file $Cfg_file up -d
-    echo "重新构建容器完成。"
 
-    # 2. 更新入口文件：index.js
+    # 1. 更新入口文件：index.js
     if [ "$Mode" == "debug" ]; then
-        cp -fv Runtime/Template/index.js index.js
+        cp -fv Runtime/Copy/index.js index.js
     else
         cp -fv app.js index.js
     fi
+
+    # 2. 重新构建容器
+    docker-compose -p "web-mariadb" --env-file $Cfg_file up     mariadb -d
+    docker-compose -p "web-mariadb" --env-file $Cfg_file build  web --force-rm --pull    
+    docker-compose -p "web-mariadb" --env-file $Cfg_file up     -d --no-deps
+    echo "重新构建容器完成。"
 
     # 3. 重启容器：web & mysql
     docker restart "${Project}_mariadb"

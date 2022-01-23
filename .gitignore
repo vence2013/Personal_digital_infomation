@@ -1,5 +1,5 @@
-Cfg_setup
-index.js
+./Cfg_setup
+./index.js
 
 node_modules/
 bower_components/
