@@ -20,7 +20,57 @@
     <div ng-include="'/view/header.html'"></div>
     <div id="wrapper" class="container-fluid" ng-controller="indexCtrl">
         <div class="row">
-            <div class="col-7">aa</div>
+            <div class="col-7 mt-3">
+                <div class="row">
+                    <div class="col list">
+                        <div class="header">
+                            <div class="title">标题 ({{total}})</div>
+                            <div class="no">编号</div>
+                            <div class="status">状态</div>
+                            <div class="part_of_standard">所属部分</div>
+                            <div class="part_of_release">版本</div>
+                        </div>
+                        <div class="item" ng-repeat="x in doclist">
+                            <div class="title">{{x.title}}</div>
+                            <div class="no">{{x.identification_no}}</div>
+                            <div class="status">{{x.status}}</div>
+                            <div class="part_of_standard">{{x.part_of_standard}}</div>
+                            <div class="part_of_release">{{x.part_of_release}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col input-group mb-3">
+                        <span class="input-group-text">标题</span>
+                        <input type="text" class="form-control">
+                    </div>
+                    <div class="col input-group mb-3">
+                        <span class="input-group-text">编号</span>
+                        <input type="text" class="form-control" style="width: 30px;">
+                        <span class="input-group-text">状态</span>
+                        <select class="form-select">
+                            <option selected>请选择..</option>
+                            <option value="1">One aa ccd sdfsafasdf</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <span class="input-group-text">部分</span>
+                        <select class="form-select">
+                            <option selected>请选择..</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <span class="input-group-text">版本</span>
+                        <select class="form-select">
+                            <option selected>请选择..</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div class="col mt-3">
                 <div class="input-group mb-3">
                     <span class="input-group-text">Title</span>
@@ -45,7 +95,7 @@
                         <button type="button" class="btn btn-outline-warning" ng-click="reset();">Reset</button>
                     </div>
                     <div class="col-4 d-grid gap-2">
-                        <button type="button" class="btn btn-outline-primary" ng-click="submit();">提交文档信息</button>
+                        <button type="button" class="btn btn-outline-success" ng-click="submit();">提交文档信息</button>
                     </div>
                 </div>
             </div>

@@ -2,12 +2,28 @@ angular
 .module('indexApp', [])
 .controller('indexCtrl', indexCtrl);
 
+/* 点击列表中的title编辑/删除，鼠标停留title显示简介 */
 function indexCtrl($scope, $http) 
 {
     $scope.info = {};
+    $scope.opts = {'size':10};
     $scope.editor_placeholder = "请编辑文档简介";
 
     $('#intro_editor').notebook();
+
+    function query()
+    {
+        let opts = $scope.opts;
+        $http.get('/autosar/document/query', {params: opts})
+        .then((res)=>{
+            if (errorCheck(res)) return ;
+
+            var ret = res.data.message;
+            $scope.total = ret.total;
+            $scope.doclist = ret.list;
+        })
+    }
+    query();
 
     $scope.submit = () => 
     {
@@ -29,7 +45,6 @@ function indexCtrl($scope, $http)
             console.log(ret)
             // 显示更新成功后，刷新该页面
             toastr.success("操作成功！");
-            window.setTimeout(()=>{ window.location.href = '/autosar/document'; }, 1000);
         });
     }
 }

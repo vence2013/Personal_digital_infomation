@@ -28,4 +28,13 @@ router.post('/:docid', async (ctx)=>{
     else          ctx.body = {'error': -1, 'message': '文档编辑失败，请联系管理员！'};
 });
 
+router.get('/query', async (ctx)=>{
+    const DocumentCtrl = ctx.controls['autosar/document'];
+    
+    /* 提取有效参数 */
+    var req2  = ctx.query;
+    var res = await DocumentCtrl.query(ctx, req2);
+    ctx.body = {'error': 0, 'message': res};
+})
+
 module.exports = router;

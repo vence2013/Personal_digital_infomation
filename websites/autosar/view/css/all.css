@@ -1,2 +1,14 @@
 /* document */
 #intro_editor { border: 1px dashed #888888; padding: 5px; min-height: 450px; border-radius: 5px; }
+
+.list { height: 605px; }
+.list>div { height: 24px; line-height: 24px; }
+.list>.header { background-color: #cccccc; text-align: center; }
+.list>.item { border-bottom: 1px dashed #cccccc; }
+.list>div>div { display: inline; float: left; }
+
+.title { width: calc(100% - 250px); }
+.no { width: 50px; text-align: center; }
+.status { width: 50px; text-align: center; }
+.part_of_standard { width: 100px; text-align: center; }
+.part_of_release { width: 50px; text-align: center; }
