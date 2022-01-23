@@ -12,7 +12,7 @@ router.get('/', async (ctx) => {
     {
         preset += 'tag:'+tag;
     }
-    await ctx.render('subsites/document/view/index.html', {'preset':preset}); 
+    await ctx.render('websites/document/view/index.html', {'preset':preset}); 
 })
 
 /* 编辑页 */
@@ -20,7 +20,7 @@ router.get('/edit/:docid', async (ctx)=>{
     var req2 = ctx.params;
     var docid= parseInt(req2.docid);
 
-    await ctx.render('subsites/document/view/edit.html', {'id':docid}); 
+    await ctx.render('websites/document/view/edit.html', {'id':docid}); 
 });
 
 /* 显示页 */
@@ -28,7 +28,7 @@ router.get('/display/:docid', async (ctx)=>{
     var req2 = ctx.params;
     var docid= parseInt(req2.docid);
 
-    await ctx.render('subsites/document/view/display.html', {'id':docid}); 
+    await ctx.render('websites/document/view/display.html', {'id':docid}); 
 });
 
 

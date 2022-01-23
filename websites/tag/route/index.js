@@ -3,7 +3,7 @@ var router = new Router();
 
 
 router.get('/', async (ctx) => {
-    await ctx.render('subsites/tag/view/index.html'); 
+    await ctx.render('websites/tag/view/index.html'); 
 })
 
 /* 搜索标签，参数为：{str, page, size } */

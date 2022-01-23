@@ -6,7 +6,7 @@ const path = require('path');
 exports.get_sub_tree_nodes = get_sub_tree_nodes;
 async function get_sub_tree_nodes(ctx, rootid) 
 {
-    const Category = ctx.models['Category'];
+    const Category = ctx.models['category/category'];
 
     var list = await Category.findAll({
         raw: true, logging: false, 
@@ -53,7 +53,7 @@ function build_tree(nodes, father)
 exports.tree_with_expand = tree_with_expand;
 async function tree_with_expand(ctx, ids_expand) 
 {
-    const Category = ctx.models['Category'];    
+    const Category = ctx.models['category/category'];    
 
     /* 获取展开目录的2级子目录（ID）（为了正确显示） */
     var ids_sub = [].concat(ids_expand);
@@ -111,9 +111,9 @@ function build_tree_resource(nodes, father)
 
 exports.tree_with_expand_resource = async (ctx, ids_expand) =>
 {
-    const File = ctx.models['File'];
-    const Document = ctx.models['Document'];
-    const Category = ctx.models['Category'];    
+    const File = ctx.models['file/file'];
+    const Document = ctx.models['document/document'];
+    const Category = ctx.models['category/category'];    
 
     /* 获取展开目录的2级子目录（ID）（为了正确显示） */
     var ids_sub = [].concat(ids_expand);

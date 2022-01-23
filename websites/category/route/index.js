@@ -3,7 +3,7 @@ var router = new Router();
 
 
 router.get('/', async (ctx)=>{
-    await ctx.render('subsites/category/view/index.html'); 
+    await ctx.render('websites/category/view/index.html'); 
 })
 
 /* 获取目录树结构（已展开节点） */

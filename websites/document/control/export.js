@@ -38,7 +38,7 @@ function state_get()
 
 exports.export_start = async (ctx) =>
 {
-    const Document = ctx.models['Document'];
+    const Document = ctx.models['document/document'];
     let idx = Export_state['log-idx'];
 
     /* 1. 获取文档总数 */
@@ -67,8 +67,8 @@ exports.export_start = async (ctx) =>
 /* 导出标签和目录到meta.txt */
 async function export_meta(ctx)
 {
-    const Tag = ctx.models['Tag'];
-    const Document = ctx.models['Document'];
+    const Tag = ctx.models['tag/tag'];
+    const Document = ctx.models['document/document'];
     const meta_filename = exportdir + 'meta.txt';
     let idx = Export_state['log-idx'];
 
@@ -110,7 +110,7 @@ async function export_meta(ctx)
 
 async function export_document(ctx)
 {
-    const Document = ctx.models['Document'];
+    const Document = ctx.models['document/document'];
     let doc_idx = Export_state['idx'];
     let doc_id  = Export_state['ids'][doc_idx];
 

@@ -3,7 +3,7 @@ var router = new Router();
 
 
 router.get('/', async (ctx)=>{
-    await ctx.render('subsites/category/view/edit.html'); 
+    await ctx.render('websites/category/view/edit.html'); 
 });
 
 router.post('/', async (ctx)=>{

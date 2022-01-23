@@ -40,7 +40,7 @@ exports.resource = async (ctx, categoryid, str, link, page, size) => {
 }
 
 exports.relate = async(ctx, categoryid, link, docids) => {
-    const Category = ctx.models['Category'];
+    const Category = ctx.models['category/category'];
 
     var categoryIns = await Category.findOne({logging:false, where:{'id':categoryid}});
     if (!categoryIns) return false; // 无效的目录

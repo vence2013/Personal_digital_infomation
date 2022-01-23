@@ -21,7 +21,6 @@ function appCtrl($scope, $http)
             if (errorCheck(res)) return ;
 
             var ret = res.data.message;
-            console.log(ret);
             $scope.taglist = ret.list;
             $scope.page = pageSet(ret.total, opts.size, 10, ret.page);
         })        

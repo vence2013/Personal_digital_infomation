@@ -3,7 +3,7 @@ const moment = require('moment');
 const mkdirp = require('mkdirp');
 
 exports.create = async (ctx, file, tagInstances) => {
-    const File = ctx.models['File'];
+    const File = ctx.models['file/file'];
 
     var size = file.size;
     var name = file.name.replace(/(^\s*)|(\s*$)/g, "");
@@ -33,7 +33,7 @@ exports.create = async (ctx, file, tagInstances) => {
 
 exports.tag_link = async (ctx, fileids, tagInstance) =>
 {
-    const File = ctx.models['File'];
+    const File = ctx.models['file/file'];
 
     var fileInstances = await File.findAll({logging: false, where: {'id':fileids}});
     // 关联标签
@@ -42,7 +42,7 @@ exports.tag_link = async (ctx, fileids, tagInstance) =>
 
 exports.tag_unlink = async (ctx, fileids, tagInstance) =>
 {
-    const File = ctx.models['File'];
+    const File = ctx.models['file/file'];
 
     var fileInstances = await File.findAll({logging: false, where: {'id':fileids}});
     // 关联标签
@@ -51,7 +51,7 @@ exports.tag_unlink = async (ctx, fileids, tagInstance) =>
 
 exports.delete = async (ctx, ids) =>
 {
-    const File = ctx.models['File'];
+    const File = ctx.models['file/file'];
 
     var fileObjs = await File.findAll({'logging':false, 'raw':true, 'where': {'id': ids}});
 
@@ -71,7 +71,7 @@ exports.delete = async (ctx, ids) =>
 
 exports.detail = async (ctx, fid) =>
 {
-    const File = ctx.models['File'];
+    const File = ctx.models['file/file'];
 
     var fileIns = await File.findOne({logging: false, where: {'id': fid}});
     if (!fileIns) return null;
@@ -87,7 +87,7 @@ exports.detail = async (ctx, fid) =>
 
 exports.search = async (ctx, query, page, pageSize) =>
 {
-    const Tag  = ctx.models['Tag']; 
+    const Tag  = ctx.models['tag/tag']; 
     var sql, sqlCond = '';
 
     // 根据搜索条件构建SQL条件

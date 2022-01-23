@@ -1,6 +1,6 @@
 
 exports.edit = async (ctx, docid, content, tagInstances)=>{
-    const Document = ctx.models['Document'];
+    const Document = ctx.models['document/document'];
 
     if (docid) {
         var docIns = await Document.findOne({logging: false, 
@@ -23,7 +23,7 @@ exports.edit = async (ctx, docid, content, tagInstances)=>{
 }
 
 exports.delete = async(ctx, docid)=>{
-    const Document = ctx.models['Document'];
+    const Document = ctx.models['document/document'];
 
     // 文件有效， 且创建者为当前用户
     await Document.destroy({logging: false, 'where': {'id': docid}});
@@ -31,7 +31,7 @@ exports.delete = async(ctx, docid)=>{
 
 /* 返回文档的详细信息：content, ... , tagnames */
 exports.detail = async (ctx, docid)=>{
-    const Document = ctx.models['Document'];
+    const Document = ctx.models['document/document'];
 
     var docIns = await Document.findOne({logging:false, where:{'id':docid}});
     if (!docIns) return null;
@@ -47,7 +47,7 @@ exports.detail = async (ctx, docid)=>{
 
 /* 搜索，返回当前页的数据 */
 exports.search = async (ctx, query) => {
-    const Tag  = ctx.models['Tag']; 
+    const Tag  = ctx.models['tag/tag']; 
     var sql, sqlCond = '';
 
     // 根据搜索条件构建SQL条件
@@ -95,7 +95,7 @@ exports.search = async (ctx, query) => {
 
 /* 搜索，返回所有结果 */
 exports.searchall = async (ctx, query) => {
-    const Tag  = ctx.models['Tag']; 
+    const Tag  = ctx.models['tag/tag']; 
     var sql, sqlCond = '';
 
     // 根据搜索条件构建SQL条件

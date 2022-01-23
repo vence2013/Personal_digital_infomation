@@ -1,5 +1,5 @@
 exports.create = async (ctx, fid, name) => {    
-    const Category = ctx.models['Category'];
+    const Category = ctx.models['category/category'];
 
     /* 新增目录自动排序到最后 */
     let cnt = await Category.count({
@@ -17,7 +17,7 @@ exports.create = async (ctx, fid, name) => {
 
 /* 编辑目录 */
 exports.edit = async (ctx, id, fid, name, order) => {
-    const Category = ctx.models['Category'];
+    const Category = ctx.models['category/category'];
     
     if (order == 0) {
         let cnt = await Category.count({
@@ -43,7 +43,7 @@ exports.edit = async (ctx, id, fid, name, order) => {
 
 /* 查找并删除子树所有节点 */
 exports.delete = async (ctx, id)=>{
-    const Category = ctx.models['Category'];
+    const Category = ctx.models['category/category'];
     const CategoryCtrl = ctx.controls['category/category'];
     var ids = [ id ];
 

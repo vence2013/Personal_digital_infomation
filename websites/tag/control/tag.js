@@ -3,7 +3,7 @@ const Op = Sequelize.Op;
 
 exports.create = async (ctx, tags) => 
 {
-    const Tag = ctx.models['Tag'];
+    const Tag = ctx.models['tag/tag'];
 
     for (i=0; i<tags.length; i++)
         [instance, created] = await Tag.findOrCreate({where: {'name': tags[i]}, logging: false});
@@ -13,21 +13,21 @@ exports.create = async (ctx, tags) =>
 }
 
 exports.delete = async (ctx, tagname) => {
-    const Tag = ctx.models['Tag'];
+    const Tag = ctx.models['tag/tag'];
 
     await Tag.destroy({logging: false, 'where': {'name': tagname}});
 }
 
 exports.get = async (ctx, tag) => 
 {
-    const Tag = ctx.models['Tag'];
+    const Tag = ctx.models['tag/tag'];
 
     return await Tag.findOne({'where': {'name':tag}, 'logging': false});
 }
 
 exports.search = async (ctx, str, page, size) => 
 {
-    const Tag = ctx.models['Tag'];
+    const Tag = ctx.models['tag/tag'];
     var queryCond = {'raw': true, 'logging': false, 'where': {}};
 
     if (str) { queryCond['where']['name'] = {[Op.like]: '%'+str+'%'}; }
@@ -50,7 +50,7 @@ exports.search = async (ctx, str, page, size) =>
 
 exports.check = async (ctx, tags) => 
 {
-    const Tag = ctx.models['Tag'];
+    const Tag = ctx.models['tag/tag'];
 
     return await Tag.findAll({'where': {'name':tags}, 'raw': true, 'logging': false});
 }

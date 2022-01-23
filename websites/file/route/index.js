@@ -3,7 +3,7 @@ var router = new Router();
 
 
 router.get('/', async (ctx) => {
-    await ctx.render('subsites/file/view/index.html'); 
+    await ctx.render('websites/file/view/index.html'); 
 })
 
 router.post('/upload', async (ctx, next) => {

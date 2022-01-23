@@ -109,12 +109,19 @@ function load_websites()
     app
     .use(StaticServer({ rootDir: '/data', rootPath: '/data'}))
     .use(StaticServer({ rootDir: "framework/view", rootPath: '/view'}))
+    .use(StaticServer({ rootDir: 'node_modules', rootPath: '/node_modules'}))
     .use(StaticServer({ rootDir: 'bower_components', rootPath: '/bower_components'}))
 
-    /* 搜集model, route, control的目录 */
     glob.sync(webdir+"/*/").map(async (dir)=>{
-        if (fs.existsSync(path.join(dir,'route')))   { routedirs.push(path.join(dir,'route')); }
-        if (fs.existsSync(path.join(dir,'control'))) { controldirs.push(path.join(dir,'control')); }
+        // 加载静态资源(view/ *)
+        if (fs.existsSync(path.join(dir, 'view')))
+            app.use(StaticServer({ rootDir: path.join(dir, 'view'), rootPath: '/'+path.parse(dir).base+'/view' }))
+
+        /* 搜集route, control的目录 */
+        if (fs.existsSync(path.join(dir,'route')))
+            routedirs.push(path.join(dir,'route'));
+        if (fs.existsSync(path.join(dir,'control')))
+            controldirs.push(path.join(dir,'control'));
     });
 
     /* 加载控制文件(control/ *)，包括根目录的控制文件和子网站的控制文件 */
