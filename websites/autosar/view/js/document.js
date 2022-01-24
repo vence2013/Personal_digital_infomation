@@ -6,14 +6,31 @@ angular
 function indexCtrl($scope, $http) 
 {
     $scope.info = {};
-    $scope.opts = {'size':10};
-    $scope.editor_placeholder = "请编辑文档简介";
+    $scope.editor_placeholder = "[Introduce]";
 
     $('#intro_editor').notebook();
 
+    function extquery()
+    {
+        $http.get('/autosar/document/extquery')
+        .then((res)=>{
+            if (errorCheck(res)) return ;
+
+            var ret = res.data.message;
+            $scope.supported_status = ret.status;
+            $scope.supported_part_of_standard = ret.part_of_standard;
+            $scope.supported_part_of_release = ret.part_of_release;
+        })
+    }
+    extquery();
+
+    $scope.opts = opts = {'size':10, 'title':'', 'identification_no':'', 'status':'', 'part_of_standard':'', 'part_of_release':''};
+    $scope.$watch("opts", query, true);
+
     function query()
     {
-        let opts = $scope.opts;
+        var opts = $scope.opts;
+
         $http.get('/autosar/document/query', {params: opts})
         .then((res)=>{
             if (errorCheck(res)) return ;
@@ -22,29 +39,55 @@ function indexCtrl($scope, $http)
             $scope.total = ret.total;
             $scope.doclist = ret.list;
         })
+    }    
+
+    $scope.reset = () =>
+    {
+        $scope.info = {};
+        $('#intro_editor').html('');
     }
-    query();
+
+    $scope.edit = (id) =>
+    {
+        $http.get('/autosar/document/info/'+id)
+        .then((res)=>{
+            if (errorCheck(res)) return ;
+
+            var ret = res.data.message;
+            $scope.info = ret;
+            $('#intro_editor').html(ret.introduce);
+        })
+    }
 
     $scope.submit = () => 
     {
-        let content = $('#intro_editor').html();
         let info = $scope.info;
-        let docid = info.id ? info.id : 0;
 
-        if (!info.title || !info.no)
+        if (!info.title || !info.identification_no)
             return toastr.warning('请输入有效标题和编号！');
 
-        if (content != $scope.editor_placeholder)
-            info['intro'] = content;
-        console.log(info);
+        let content = $('#intro_editor').html();
+        if (content.indexOf($scope.editor_placeholder) == 0)
+            content = content.substr($scope.editor_placeholder.length);
+        info['intro'] = content;
 
+        let docid = info.id ? info.id : 0;
         $http.post('/autosar/document/'+docid, info).then((res)=>{
             if (errorCheck(res)) return ;
 
-            ret = res.data.message;
-            console.log(ret)
+            query();
             // 显示更新成功后，刷新该页面
             toastr.success("操作成功！");
+        });
+    }
+
+    $scope.delete = (id) => 
+    {
+        $http.delete('/autosar/document/'+id).then((res)=>{
+            if (errorCheck(res)) return ;
+
+            query();
+            toastr.success("删除成功，即将返回首页！");
         });
     }
 }

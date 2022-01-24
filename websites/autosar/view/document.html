@@ -5,7 +5,9 @@
     <script src="/bower_components/jquery/dist/jquery.min.js" type="text/javascript"></script> 
     <script src="/bower_components/angular/angular.min.js" type="text/javascript"></script>
     <!-- font-awesome -->
-    <link  href="/bower_components/font-awesome/css/fontawesome.css" rel="stylesheet" />
+    <link  href="/bower_components/font-awsome/css/font-awesome.css" rel="stylesheet" />
+    <!-- Bootstrap -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.bundle.js" type="text/javascript"></script>
     <!-- jquery-notebook -->
     <link href="/bower_components/jquery-notebook/src/js/jquery.notebook.css" rel="stylesheet" type="text/css" />
     <script src="/bower_components/jquery-notebook/src/js/jquery.notebook.js" type="text/javascript"></script>
@@ -30,7 +32,7 @@
                             <div class="part_of_standard">所属部分</div>
                             <div class="part_of_release">版本</div>
                         </div>
-                        <div class="item" ng-repeat="x in doclist">
+                        <div class="item" ng-repeat="x in doclist" ng-click="edit(x.id)">
                             <div class="title">{{x.title}}</div>
                             <div class="no">{{x.identification_no}}</div>
                             <div class="status">{{x.status}}</div>
@@ -42,31 +44,25 @@
                 <div class="row">
                     <div class="col input-group mb-3">
                         <span class="input-group-text">标题</span>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" ng-model="opts.title">
                     </div>
                     <div class="col input-group mb-3">
                         <span class="input-group-text">编号</span>
-                        <input type="text" class="form-control" style="width: 30px;">
+                        <input type="text" class="form-control" style="width: 30px;" ng-model="opts.identification_no">
                         <span class="input-group-text">状态</span>
-                        <select class="form-select">
-                            <option selected>请选择..</option>
-                            <option value="1">One aa ccd sdfsafasdf</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" ng-model="opts.status">
+                            <option value="">请选择..</option>
+                            <option ng-repeat="x in supported_status" value="{{x}}">{{x}}</option>
                         </select>
                         <span class="input-group-text">部分</span>
-                        <select class="form-select">
-                            <option selected>请选择..</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" ng-model="opts.part_of_standard">
+                            <option value="">请选择..</option>
+                            <option ng-repeat="x in supported_part_of_standard" value="{{x}}">{{x}}</option>
                         </select>
                         <span class="input-group-text">版本</span>
-                        <select class="form-select">
-                            <option selected>请选择..</option>
-                            <option value="1">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                        <select class="form-select" ng-model="opts.part_of_release">
+                            <option value="">请选择..</option>
+                            <option ng-repeat="x in supported_part_of_release" value="{{x}}">{{x}}</option>
                         </select>
                     </div>
                 </div>
@@ -78,7 +74,7 @@
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">Identification No</span>
-                    <input type="text" class="form-control" ng-model="info.no" placeholder="编号">
+                    <input type="text" class="form-control" ng-model="info.identification_no" placeholder="编号">
                     <span class="input-group-text">Status</span>
                     <input type="text" class="form-control" ng-model="info.status" placeholder="状态">
                 </div>
@@ -92,10 +88,32 @@
                 <div class="row mt-3">
                     <div class="col"></div>
                     <div class="col-2 d-grid gap-2">
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteWnd" ng-show="info.id">Delete</button>
+                    </div>
+                    <div class="col-2 d-grid gap-2">
                         <button type="button" class="btn btn-outline-warning" ng-click="reset();">Reset</button>
                     </div>
                     <div class="col-4 d-grid gap-2">
-                        <button type="button" class="btn btn-outline-success" ng-click="submit();">提交文档信息</button>
+                        <button type="button" class="btn btn-outline-success" ng-click="submit();">Submit Information</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文档删除确认窗口 -->
+        <div id="deleteWnd" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title font-weight-bold font-italic">文档删除确认</h5>
+                        <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                    </div>
+                    <div class="modal-body">
+                        该操作将删除文档信息，确认删除吗？
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger px-4" data-bs-dismiss="modal" ng-click="delete(info.id);">删除</button>
+                        <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">取消</button>                
                     </div>
                 </div>
             </div>
