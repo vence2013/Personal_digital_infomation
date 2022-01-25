@@ -86,7 +86,9 @@
                 </div>
                 <div id="intro_editor">{{editor_placeholder}}</div>
                 <div class="row mt-3">
-                    <div class="col"></div>
+                    <div class="col">
+                        <div class="id_info" ng-show="info.id">Document ID: {{info.id}}</div>
+                    </div>
                     <div class="col-2 d-grid gap-2">
                         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteWnd" ng-show="info.id">Delete</button>
                     </div>
@@ -100,7 +102,7 @@
             </div>
         </div>
 
-        <!-- 文档删除确认窗口 -->
+        <!-- 删除确认窗口 -->
         <div id="deleteWnd" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">

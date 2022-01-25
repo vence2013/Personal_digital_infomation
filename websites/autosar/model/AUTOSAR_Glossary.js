@@ -1,6 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define('AUTOSAR_Glossary', 
     {
+        docid: {
+            type: DataTypes.STRING(255),
+            allowNull: false
+        },
         term: {
             type: DataTypes.STRING(255),
             allowNull: false
@@ -10,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: false
         }, 
         initiator: {
-            type: DataTypes.BLOB,
+            type: DataTypes.STRING(255),
         }, 
         further_explanation: {
             type: DataTypes.BLOB,
@@ -20,6 +24,9 @@ module.exports = (sequelize, DataTypes) => {
         }, 
         example: {
             type: DataTypes.BLOB, 
+        },
+        reference: {
+            type: DataTypes.STRING(255), 
         },
     }, {
         charset: 'utf8',

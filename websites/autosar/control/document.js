@@ -71,7 +71,8 @@ exports.info = async (ctx, docid) =>
     const Document = ctx.models['autosar/autosar_document'];
 
     let ret = await Document.findOne({'where': {'id':docid}, 'logging': false});
-    ret['introduce'] = ret.introduce.toString();
+    if (ret)
+        ret['introduce'] = ret.introduce.toString();
 
     return ret;
 }

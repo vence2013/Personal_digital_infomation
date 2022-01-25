@@ -16,10 +16,16 @@ function indexCtrl($scope, $http)
         .then((res)=>{
             if (errorCheck(res)) return ;
 
-            var ret = res.data.message;
-            $scope.supported_status = ret.status;
-            $scope.supported_part_of_standard = ret.part_of_standard;
-            $scope.supported_part_of_release = ret.part_of_release;
+            let ret = res.data.message;
+            $scope.supported_status = [];
+            for (let i = 0; i < ret.status.length; i++) 
+                if (ret.status[i]) $scope.supported_status.push(ret.status[i]);
+            $scope.supported_part_of_standard = [];
+            for (let i = 0; i < ret.part_of_standard.length; i++) 
+                if (ret.part_of_standard[i]) $scope.supported_part_of_standard.push(ret.part_of_standard[i]);
+            $scope.supported_part_of_release = [];
+            for (let i = 0; i < ret.part_of_release.length; i++) 
+                if (ret.part_of_release[i]) $scope.supported_part_of_release.push(ret.part_of_release[i]);
         })
     }
     extquery();
