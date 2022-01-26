@@ -5,7 +5,7 @@ exports.edit = async (ctx, termid, docid, term, definition, initiator,
     const Glossary = ctx.models['autosar/autosar_glossary'];
     let ins;
 
-    console.log(termid, docid, term, definition, initiator, further_explanation, comment, example, reference);
+    //console.log(termid, docid, term, definition, initiator, further_explanation, comment, example, reference);
     if (termid) {
         ins = await Glossary.findOne({logging: false, 
             where: {'id':termid}

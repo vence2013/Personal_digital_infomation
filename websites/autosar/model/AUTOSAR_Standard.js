@@ -1,31 +1,36 @@
 module.exports = (sequelize, DataTypes) => {
-    return sequelize.define('AUTOSAR_Glossary', 
+    return sequelize.define('AUTOSAR_Standard', 
     {
-        docid: {
-            type: DataTypes.INTEGER(10),
-            allowNull: false
-        },
-        term: {
+        id: {
             type: DataTypes.STRING(255),
+            primaryKey: true,
             allowNull: false,
         }, 
-        definition: {
+        docid: {
+            type: DataTypes.STRING(255),
+            primaryKey: true,            
+            allowNull: false,
+        },
+        title: {
             type: DataTypes.BLOB,
             allowNull: false
         }, 
-        initiator: {
+        description: {
+            type: DataTypes.BLOB,
+        }, 
+        type: {
             type: DataTypes.STRING(255),
         }, 
-        further_explanation: {
+        rationale: {
             type: DataTypes.BLOB,
         }, 
-        comment: {
+        usecase: {
             type: DataTypes.BLOB,
         }, 
-        example: {
-            type: DataTypes.BLOB, 
+        applies_to: {
+            type: DataTypes.STRING(255), 
         },
-        reference: {
+        supporting_material: {
             type: DataTypes.STRING(255), 
         },
     }, {

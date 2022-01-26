@@ -6,7 +6,7 @@ angular
 function indexCtrl($scope, $http) 
 {
     $scope.info = {};
-    $scope.editor_placeholder = "[Introduce]";
+    $scope.tips = tips = {'intro':'[简介/Introduce]'};
 
     $('#intro_editor').notebook();
 
@@ -50,7 +50,7 @@ function indexCtrl($scope, $http)
     $scope.reset = () =>
     {
         $scope.info = {};
-        $('#intro_editor').html('');
+        $('#intro_editor').html(tips.intro);
     }
 
     $scope.edit = (id) =>
