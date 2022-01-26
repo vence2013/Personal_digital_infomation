@@ -5,10 +5,24 @@ angular
 /* 点击列表中的title编辑/删除，鼠标停留title显示简介 */
 function indexCtrl($scope, $http) 
 {
-    $scope.info = {};
-    $scope.tips = tips = {'intro':'[简介/Introduce]'};
+    const trumbowyg_btns = [
+        ['formatting', 'unorderedList', 'orderedList'], 
+        ['strong', 'em', 'del'],         
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+        ['link', 'insertImage', 'viewHTML'],
+        ['fullscreen']
+    ];
+    $('.intro').trumbowyg({btns:trumbowyg_btns, autogrow:true});
 
-    $('#intro_editor').notebook();
+    $scope.info = {};
+
+    $scope.reset = reset;
+    function reset()
+    {
+        $scope.info = {};
+        $('.intro').trumbowyg('empty');
+    }
+    reset();
 
     function extquery()
     {
@@ -47,12 +61,6 @@ function indexCtrl($scope, $http)
         })
     }    
 
-    $scope.reset = () =>
-    {
-        $scope.info = {};
-        $('#intro_editor').html(tips.intro);
-    }
-
     $scope.edit = (id) =>
     {
         $http.get('/autosar/document/info/'+id)
@@ -61,7 +69,7 @@ function indexCtrl($scope, $http)
 
             var ret = res.data.message;
             $scope.info = ret;
-            $('#intro_editor').html(ret.introduce);
+            $('.intro').trumbowyg('html', ret.introduce);
         })
     }
 
@@ -72,10 +80,7 @@ function indexCtrl($scope, $http)
         if (!info.title || !info.identification_no)
             return toastr.warning('请输入有效标题和编号！');
 
-        let content = $('#intro_editor').html();
-        if (content.indexOf($scope.editor_placeholder) == 0)
-            content = content.substr($scope.editor_placeholder.length);
-        info['intro'] = content;
+        info['intro'] = $('.intro').trumbowyg('html');
 
         let docid = info.id ? info.id : 0;
         $http.post('/autosar/document/'+docid, info).then((res)=>{

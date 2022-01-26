@@ -1,3 +1,4 @@
+const Op = require('sequelize').Op; 
 
 exports.edit = async (ctx, termid, docid, term, definition, initiator, 
                         further_explanation, comment, example, reference) =>

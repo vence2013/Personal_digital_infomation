@@ -6,10 +6,18 @@ angular
 function indexCtrl($scope, $http) 
 {
     $scope.info = {};
-    $scope.tips = tips = {'definition':'[定义/Definition]', 'comment':'[注释/Comment]', 
-        'further_explanation':'[进一步解释/Further Explanation]', 'example':'[示例/Example]'};
 
-    $('.glossary_item').notebook();
+    $scope.reset = reset;
+    function reset()
+    {
+        $scope.info = {};
+        $('.glossary_item').html('');
+        $('.definition').notebook({placeholder:'定义/Definition'});
+        $('.further_explanation').notebook({placeholder:'注释/Comment'});
+        $('.comment').notebook({placeholder:'进一步解释/Further Explanation'});
+        $('.example').notebook({placeholder:'示例/Example'});
+    }
+    reset();
 
 
     $scope.opts = opts = {'size':10, 'term':''};
@@ -36,10 +44,10 @@ function indexCtrl($scope, $http)
 
             var ret = res.data.message;
             $scope.info = ret;
-            $('.definition').html(ret.definition ? ret.definition : tips.definition);
-            $('.further_explanation').html(ret.further_explanation ? ret.further_explanation : tips.further_explanation);
-            $('.comment').html(ret.comment ? ret.comment : tips.comment);
-            $('.example').html(ret.example ? ret.example : tips.example);
+            $('.definition').html(ret.definition);
+            $('.further_explanation').html(ret.further_explanation);
+            $('.comment').html(ret.comment);
+            $('.example').html(ret.example);
         })
     }
 
@@ -47,25 +55,11 @@ function indexCtrl($scope, $http)
     {
         let info = $scope.info;
 
-        let definition = $('.definition').html();
-        if (definition.indexOf(tips.definition) == 0)
-            definition = definition.substr(tips.definition.length);
-        info['definition'] = definition;
+        info['definition'] = $('.definition').html();
+        info['further_explanation'] = $('.further_explanation').html();
+        info['comment'] = $('.comment').html();
+        info['example'] = $('.example').html();
 
-        let further_explanation = $('.further_explanation').html();
-        if (further_explanation.indexOf(tips.further_explanation) == 0)
-            further_explanation = further_explanation.substr(tips.further_explanation.length);
-        info['further_explanation'] = further_explanation;
-
-        let comment = $('.comment').html();
-        if (comment.indexOf(tips.comment) == 0)
-            comment = comment.substr(tips.comment.length);
-        info['comment'] = comment;
-
-        let example = $('.example').html();
-        if (example.indexOf(tips.example) == 0)
-            example = example.substr(tips.example.length);
-        info['example'] = example;
         if (!info.term || !info.definition || !/^\d+$/.test(info.docid))
             return toastr.warning('请输入有效词汇，定义和文档ID！');
 
@@ -77,16 +71,6 @@ function indexCtrl($scope, $http)
             // 显示更新成功后，刷新该页面
             toastr.success("操作成功！");
         });
-    }
-
-    $scope.reset = reset;
-    function reset()
-    {
-        $scope.info = {};
-        $('.definition').html(tips.definition);
-        $('.further_explanation').html(tips.further_explanation);
-        $('.comment').html(tips.comment);
-        $('.example').html(tips.example);
     }
 
     $scope.delete = (id) => 

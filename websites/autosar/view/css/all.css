@@ -1,23 +1,12 @@
-.id_info { line-height: 30px; font-weight: bold; font-style: italic; }
+.key_info { line-height: 30px; font-weight: bold; font-style: italic; }
+
 
 /* document */
-#intro_editor { border: 1px dashed #888888; padding: 5px; min-height: 450px; border-radius: 5px; }
-
-.document_list { height: 605px; }
-.document_list>div { height: 24px; line-height: 24px; }
-.document_list>.header { background-color: #cccccc; text-align: center; }
-.document_list>.item { border-bottom: 1px dashed #cccccc; cursor: pointer; }
-.document_list>div>div { display: inline; float: left; }
-
-.document_list>div>.title { width: calc(100% - 250px); }
-.document_list>div>.no { width: 50px; text-align: center; }
-.document_list>div>.status { width: 50px; text-align: center; }
-.document_list>div>.part_of_standard { width: 100px; text-align: center; }
-.document_list>div>.part_of_release { width: 50px; text-align: center; }
+.document_list>div { height: 25px; margin-top: 5px; border-bottom: 1px dashed #cccccc; }
+.document_list>div:not(:first-child) { text-align: center; }
 
 /* glossary */
-.glossary_item { height: 100px; padding: 5px; border: 1px dashed #888888; border-radius: 5px; }
-.definition { height: 250px; }
+.glossary_item { padding: 5px; border: 1px dashed #888888; border-radius: 5px; }
 .glossary_list { height: 545px; border: 1px dashed #888888; border-radius: 5px; }
 .glossary_list>div { display: inline; float: left; padding: 0px 5px; border-bottom: 1px solid #cccccc; cursor: pointer; }
 
