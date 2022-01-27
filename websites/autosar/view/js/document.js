@@ -12,7 +12,7 @@ function indexCtrl($scope, $http)
         ['link', 'insertImage', 'viewHTML'],
         ['fullscreen']
     ];
-    $('.intro').trumbowyg({btns:trumbowyg_btns, autogrow:true});
+    $('.intro').trumbowyg({btns:trumbowyg_btns});
 
     $scope.info = {};
 

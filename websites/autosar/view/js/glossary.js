@@ -5,17 +5,28 @@ angular
 /* 点击列表中的title编辑/删除，鼠标停留title显示简介 */
 function indexCtrl($scope, $http) 
 {
+    const trumbowyg_btns = [
+        ['formatting', 'unorderedList', 'orderedList'], 
+        ['strong', 'em', 'del'],         
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+        ['link', 'insertImage', 'viewHTML'],
+        ['fullscreen']
+    ];
+    $('.definition').trumbowyg({btns:trumbowyg_btns});
+    $('.further_explanation').trumbowyg({btns:trumbowyg_btns});
+    $('.comment').trumbowyg({btns:trumbowyg_btns});
+    $('.example').trumbowyg({btns:trumbowyg_btns});
+
     $scope.info = {};
 
     $scope.reset = reset;
     function reset()
     {
         $scope.info = {};
-        $('.glossary_item').html('');
-        $('.definition').notebook({placeholder:'定义/Definition'});
-        $('.further_explanation').notebook({placeholder:'注释/Comment'});
-        $('.comment').notebook({placeholder:'进一步解释/Further Explanation'});
-        $('.example').notebook({placeholder:'示例/Example'});
+        $('.definition').trumbowyg('empty');
+        $('.further_explanation').trumbowyg('empty');
+        $('.comment').trumbowyg('empty');
+        $('.example').trumbowyg('empty');
     }
     reset();
 
@@ -44,10 +55,10 @@ function indexCtrl($scope, $http)
 
             var ret = res.data.message;
             $scope.info = ret;
-            $('.definition').html(ret.definition);
-            $('.further_explanation').html(ret.further_explanation);
-            $('.comment').html(ret.comment);
-            $('.example').html(ret.example);
+            $('.definition').trumbowyg('html', ret.definition);
+            $('.further_explanation').trumbowyg('html', ret.further_explanation);
+            $('.comment').trumbowyg('html', ret.comment);
+            $('.example').trumbowyg('html', ret.example);
         })
     }
 
@@ -68,12 +79,19 @@ function indexCtrl($scope, $http)
             if (errorCheck(res)) return ;
 
             query();
+
+            $scope.info['term'] = '';
+            $scope.info['initiator'] = '';
+            $('.definition').trumbowyg('empty');
+            $('.further_explanation').trumbowyg('empty');
+            $('.comment').trumbowyg('empty');
+            $('.example').trumbowyg('empty');
             // 显示更新成功后，刷新该页面
             toastr.success("操作成功！");
         });
     }
 
-    $scope.delete = (id) => 
+    $scope.delete = (id) =>
     {
         $http.delete('/autosar/glossary/'+id).then((res)=>{
             if (errorCheck(res)) return ;

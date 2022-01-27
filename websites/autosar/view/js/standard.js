@@ -5,12 +5,29 @@ angular
 /* 点击列表中的title编辑/删除，鼠标停留title显示简介 */
 function indexCtrl($scope, $http) 
 {
+    const trumbowyg_btns = [
+        ['formatting', 'unorderedList', 'orderedList'], 
+        ['strong', 'em', 'del'],
+        ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+        ['link', 'insertImage', 'viewHTML'],
+        ['fullscreen']
+    ];
+    $('.title').trumbowyg({btns:trumbowyg_btns});
+    $('.description').trumbowyg({btns:trumbowyg_btns});
+    $('.rationale').trumbowyg({btns:trumbowyg_btns});
+    $('.usecase').trumbowyg({btns:trumbowyg_btns});
+
     $scope.info = {};
-    $scope.tips = tips = {'title':'[标题/Title]', 'description':'[描述/Description]', 
-        'rationale':'[工作原理/Rationale]', 'usecase':'[用例/Use Case]'};
 
-    $('.standard_item').notebook();
-
+    $scope.reset = reset;
+    function reset()
+    {
+        $scope.info = {};
+        $('.title').trumbowyg('empty');
+        $('.description').trumbowyg('empty');
+        $('.rationale').trumbowyg('empty');
+        $('.usecase').trumbowyg('empty');
+    }
 
     $scope.opts = opts = {'size':10, 'id':''};
     $scope.$watch("opts", query, true);
@@ -36,10 +53,10 @@ function indexCtrl($scope, $http)
 
             var ret = res.data.message;
             $scope.info = ret;
-            $('.title').html(ret.title ? ret.title : tips.title);
-            $('.description').html(ret.description ? ret.description : tips.description);
-            $('.rationale').html(ret.rationale ? ret.rationale : tips.rationale);
-            $('.usecase').html(ret.usecase ? ret.usecase : tips.usecase);
+            $('.title').trumbowyg('html', ret.title);
+            $('.description').trumbowyg('html', ret.description);
+            $('.rationale').trumbowyg('html', ret.rationale);
+            $('.usecase').trumbowyg('html', ret.usecase);
         })
     }
 
@@ -47,17 +64,10 @@ function indexCtrl($scope, $http)
     {
         let info = $scope.info;
 
-        let title = $('.title').html();
-        info['title'] = (title.indexOf(tips.title) == 0) ? title.substr(tips.title.length) : title;
-
-        let description = $('.description').html();
-        info['description'] = (description.indexOf(tips.description) == 0) ? description.substr(tips.description.length) : description;
-
-        let rationale = $('.rationale').html();
-        info['rationale'] = (rationale.indexOf(tips.rationale) == 0) ? rationale.substr(tips.rationale.length) : rationale;
-
-        let usecase = $('.usecase').html();
-        info['usecase'] = (usecase.indexOf(tips.usecase) == 0) ? usecase.substr(tips.usecase.length) : usecase;
+        info['title'] = $('.title').trumbowyg('html');
+        info['description'] = $('.description').trumbowyg('html');
+        info['rationale'] = $('.rationale').trumbowyg('html');
+        info['usecase'] = $('.usecase').trumbowyg('html');
 
         if (!info.id || !info.title || !info.description || !/^\d+$/.test(info.docid))
             return toastr.warning('请输入有效的标识，标题，描述和所属文档！');
@@ -67,19 +77,15 @@ function indexCtrl($scope, $http)
             if (errorCheck(res)) return ;
 
             query();
+            $scope.info['id'] = '';
+            $('.title').trumbowyg('empty');
+            $('.description').trumbowyg('empty');
+            $('.rationale').trumbowyg('empty');
+            $('.usecase').trumbowyg('empty');
+
             // 显示更新成功后，刷新该页面
             toastr.success("操作成功！");
         });
-    }
-
-    $scope.reset = reset;
-    function reset()
-    {
-        $scope.info = {};
-        $('.title').html(tips.title);
-        $('.description').html(tips.description);
-        $('.rationale').html(tips.rationale);
-        $('.usecase').html(tips.usecase);
     }
 
     $scope.delete = (id) => 
