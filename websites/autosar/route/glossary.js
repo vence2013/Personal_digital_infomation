@@ -6,6 +6,10 @@ router.get('/', async (ctx)=>{
     await ctx.render('websites/autosar/view/glossary.html'); 
 });
 
+router.get('/display', async (ctx)=>{
+    await ctx.render('websites/autosar/view/glossary_display.html'); 
+});
+
 router.get('/query', async (ctx)=>{
     const GlossaryCtrl = ctx.controls['autosar/glossary'];
     

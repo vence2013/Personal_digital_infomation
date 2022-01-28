@@ -29,7 +29,7 @@ function indexCtrl($scope, $http)
         $('.usecase').trumbowyg('empty');
     }
 
-    $scope.opts = opts = {'size':10, 'id':''};
+    $scope.opts = opts = {'size':80, 'id':''};
     $scope.$watch("opts", query, true);
     function query()
     {
@@ -78,6 +78,7 @@ function indexCtrl($scope, $http)
 
             query();
             $scope.info['id'] = '';
+            $scope.info['dependencies'] = '';
             $('.title').trumbowyg('empty');
             $('.description').trumbowyg('empty');
             $('.rationale').trumbowyg('empty');

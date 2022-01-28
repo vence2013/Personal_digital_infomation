@@ -46,8 +46,8 @@
             </div>
             <div class="col">
                 <div class="row mt-3">
-                    <div class="col glossary_list p-1 me-2">
-                        <div class="me-2" ng-repeat="x in termlist" ng-click="edit(x.id)">{{x.term}}</div>
+                    <div class="col glossary_list alist p-2 me-2">
+                        <a class="me-2" href="#" ng-repeat="x in termlist" ng-click="edit(x.id)">{{x.term}}</a>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -59,16 +59,16 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-2"></div>
-                    <div class="col d-grid gap-2 pe-0">
-                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteWnd" ng-show="info.id">Delete</button>
+                    <div class="col-5 d-grid gap-2">
+                        <button type="button" class="btn btn-outline-success" ng-click="submit()">Submit Information</button>
                     </div>
                     <div class="col d-grid gap-2 pe-0">
                         <button type="button" class="btn btn-outline-warning" ng-click="reset()">Reset</button>
                     </div>
-                    <div class="col-5 d-grid gap-2">
-                        <button type="button" class="btn btn-outline-success" ng-click="submit()">Submit Information</button>
+                    <div class="col d-grid gap-2 pe-0">
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteWnd" ng-show="info.id">Delete</button>
                     </div>
+                    <div class="col-2"></div>
                 </div>
             </div>
         </div>

@@ -31,7 +31,7 @@ function indexCtrl($scope, $http)
     reset();
 
 
-    $scope.opts = opts = {'size':10, 'term':''};
+    $scope.opts = opts = {'size':36, 'term':''};
     $scope.$watch("opts", query, true);
     function query()
     {
@@ -81,6 +81,7 @@ function indexCtrl($scope, $http)
             query();
 
             $scope.info['term'] = '';
+            $scope.info['reference'] = '';
             $scope.info['initiator'] = '';
             $('.definition').trumbowyg('empty');
             $('.further_explanation').trumbowyg('empty');

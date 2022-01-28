@@ -24,11 +24,11 @@
         <div class="row">
             <div class="col-8 mt-3">
                 <div class="row mb-2">
-                    <div class="col pe-0">
-                        <input type="text" class="form-control" ng-disabled="info.createdAt" ng-model="info.docid" placeholder="所属文档/Document ID">
-                    </div>
                     <div class="col-4 pe-0">
                         <input type="text" class="form-control" ng-disabled="info.createdAt" ng-model="info.id" placeholder="标识/Identification">
+                    </div>
+                    <div class="col pe-0">
+                        <input type="text" class="form-control" ng-disabled="info.createdAt" ng-model="info.docid" placeholder="所属文档/Document ID">
                     </div>
                     <div class="col pe-0">
                         <input type="text" class="form-control" ng-model="info.type" placeholder="类型/Type">
@@ -54,8 +54,8 @@
             </div>
             <div class="col">
                 <div class="row mt-3">
-                    <div class="col standard_list p-1 me-2">
-                        <div class="me-2" ng-repeat="x in stdlist" ng-click="edit(x.id)">{{x.id}}</div>
+                    <div class="col standard_list alist p-2 me-2">
+                        <a class="me-2" href="#" ng-repeat="x in stdlist" ng-click="edit(x.id)">{{x.id}} </a>
                     </div>
                 </div>
                 <div class="row mt-3">
@@ -67,16 +67,16 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-2"></div>
-                    <div class="col d-grid gap-2 pe-0">
-                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteWnd" ng-show="info.createdAt">Delete</button>
+                    <div class="col-5 d-grid gap-2">
+                        <button type="button" class="btn btn-outline-success" ng-click="submit()">Submit Information</button>
                     </div>
                     <div class="col d-grid gap-2 pe-0">
                         <button type="button" class="btn btn-outline-warning" ng-click="reset()">Reset</button>
                     </div>
-                    <div class="col-5 d-grid gap-2">
-                        <button type="button" class="btn btn-outline-success" ng-click="submit()">Submit Information</button>
+                    <div class="col d-grid gap-2 pe-0">
+                        <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteWnd" ng-show="info.createdAt">Delete</button>
                     </div>
+                    <div class="col-2"></div>
                 </div>
             </div>
         </div>
