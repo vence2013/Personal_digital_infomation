@@ -1,4 +1,4 @@
-
+const Op = require('sequelize').Op; 
 
 exports.edit = async (ctx, stdid, docid, title, description, type, rationale, usecase, 
                         applies_to, supporting_material) =>
@@ -61,6 +61,33 @@ exports.query = async (ctx, size, id) =>
 
     var total = await Standard.count(cond);
     var list = await Standard.findAll(cond);
+
+    return {'total':total, 'list':list};
+}
+
+exports.query_or = async (ctx, size, docid, str) =>
+{
+    const Standard = ctx.models['autosar/autosar_standard'];
+    vsize = parseInt(size) ? parseInt(size) : 20;
+    let cond = {'raw': true, 'logging': false, 'offset':0, 'limit': vsize,
+                'order':[['createdAt', 'DESC']], 'where': {}};
+
+    if (docid)
+        cond['where']['docid'] = docid;
+    if (str)
+    {
+        cond['where'][Op.or] = [
+            {'id': {[Op.like]: '%'+str+'%'} },
+            {'title': {[Op.like]: '%'+str+'%'} },
+            {'description': {[Op.like]: '%'+str+'%'} },
+        ];
+    }
+
+    var total = await Standard.count(cond);
+    var list = await Standard.findAll(cond);
+    for (let i = 0; i < list.length; i++) {
+        list[i]['title'] = list[i]['title'].toString();
+    }
 
     return {'total':total, 'list':list};
 }

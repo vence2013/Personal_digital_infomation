@@ -34,3 +34,6 @@
 .description { height: 110px; }
 .standard_list { height: 545px; border: 1px dashed #888888; border-radius: 5px; }
 
+/* standard display */
+.standard_sel { color: #008B8B; }
+.standard_list>a { margin-right: 20px; }

@@ -6,6 +6,10 @@ router.get('/', async (ctx)=>{
     await ctx.render('websites/autosar/view/standard.html'); 
 });
 
+router.get('/display', async (ctx)=>{
+    await ctx.render('websites/autosar/view/standard_display.html'); 
+});
+
 router.get('/query', async (ctx)=>{
     const StandardCtrl = ctx.controls['autosar/standard'];
     
@@ -14,6 +18,18 @@ router.get('/query', async (ctx)=>{
     let id = req2.id ? req2.id : '';
 
     var res = await StandardCtrl.query(ctx, req2.size, id);
+    ctx.body = {'error': 0, 'message': res};
+})
+
+router.get('/query_or', async (ctx)=>{
+    const StandardCtrl = ctx.controls['autosar/standard'];
+    
+    /* 提取有效参数 */
+    var req2  = ctx.query;
+    let docid = req2.docid ? req2.docid : '';
+    let str = req2.str ? req2.str : '';
+
+    var res = await StandardCtrl.query_or(ctx, req2.size, docid, str);
     ctx.body = {'error': 0, 'message': res};
 })
 
