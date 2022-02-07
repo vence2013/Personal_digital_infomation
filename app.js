@@ -76,12 +76,9 @@ function load_database(sequelize)
 /* 连接数据库 */
 function connect_database()
 {
-    const Project = cfg.TITLE+'-v'+cfg.VERSION_MAJOR+'.'+cfg.VERSION_MINOR;
-    const Host_mysql = Project+'_mariadb';
-
     // 数据库连接
-    var sequelize = new Sequelize(Project, 'root', cfg.MYSQL_ROOT_PASSWORD, 
-        { host: Host_mysql, dialect: 'mysql', pool: { max: 5, min: 0, acquire: 30000, idle: 10000 } }
+    var sequelize = new Sequelize(cfg.TITLE, 'pi', "12345678", 
+        { host: "localhost", dialect: 'mysql', pool: { max: 5, min: 0, acquire: 30000, idle: 10000 } }
     );
     app.context.sequelize = sequelize;
     //console.log('aa', sequelize);

@@ -32,7 +32,7 @@ sudo systemctl enable ssh.service
 
 1. 安装samba软件
 ~~~
-sudo apt-get install openssh-server
+sudo apt-get install samba samba-common
 ~~~
 
 2. 在配置文件/etc/samba/smb.conf添加以下内容
@@ -105,7 +105,9 @@ docker-compose --version
     * 新建配置文件：/etc/docker/daemon.json，加入以下内容：
 ~~~
 {
-    "registry-mirrors": ["http://hub-mirror.c.163.com"]
+    "registry-mirrors": [
+        "http://hub-mirror.c.163.com"
+    ]
 }
 ~~~
     * 配置好后，重启docker
