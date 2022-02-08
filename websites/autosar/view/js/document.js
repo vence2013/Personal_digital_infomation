@@ -44,12 +44,15 @@ function indexCtrl($scope, $http)
     }
     extquery();
 
-    $scope.opts = opts = {'size':10, 'title':'', 'identification_no':'', 'status':'', 'part_of_standard':'', 'part_of_release':''};
+    let opts = locals_read('/autosar/document/opts');
+    if (! opts || !opts.size) opts = {'size':10, 'title':'', 'identification_no':'', 'status':'', 'part_of_standard':'', 'part_of_release':''};
+    $scope.opts = opts;
     $scope.$watch("opts", query, true);
 
     function query()
     {
         var opts = $scope.opts;
+        locals_write('/autosar/document/opts', opts);
 
         $http.get('/autosar/document/query', {params: opts})
         .then((res)=>{

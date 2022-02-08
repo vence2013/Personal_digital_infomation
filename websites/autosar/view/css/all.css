@@ -41,3 +41,4 @@
 font-style: italic; font-weight: bold; color: #888888; }
 .standard_info>div { display: inline; float: left; margin-right: 20px; color: #000000; }
 .standard_info>div>span { color: #888888; margin-right: 10px; }
+.standard_info_title { font-weight: bold; }

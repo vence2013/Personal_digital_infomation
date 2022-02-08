@@ -43,33 +43,33 @@
             </div>
             <div class="col">
                 <div class="row">
-                    <div class="col pe-0">
-                        <div class="border rounded column2 standard_list p-2">
-                            <a href="#" ng-repeat="x in standard_info.dependencylist">{{x}}</a>
-                        </div>
-                    </div>
                     <div class="col">
-                        <div class="border rounded column2 standard_list p-2">
-                            <a href="#" ng-repeat="x in standard_info.supportlist">{{x}}</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col mt-2">
-                        <div class="border ronded column3 p-2 overflow-auto">
+                        <div class="border rounded column3 p-2 overflow-auto">
+                            <div class="standard_info_title" ng-show="standard_info.title"></div>
                             <div class="standard_tip standard_info ">
                                 <div ng-show="standard_info.id"><span>ID</span>{{standard_info.id}}</div>
                                 <div ng-show="standard_info.status"><span>Status</span>{{standard_info.status}}</div>
                                 <div ng-show="standard_info.applies_to"><span>Applies_to</span>{{standard_info.applies_to}}</div>
                             </div>
-                            <div class="standard_tip" ng-show="standard_info.title">标题</div>
-                            <div class="standard_info_title" ng-show="standard_info.title"></div>
+                            
                             <div class="standard_tip" ng-show="standard_info.description">描述</div>
                             <div class="standard_info_description" ng-show="standard_info.description"></div>
                             <div class="standard_tip" ng-show="standard_info.rationale">原理</div>
                             <div class="standard_info_rationale" ng-show="standard_info.rationale"></div>
                             <div class="standard_tip" ng-show="standard_info.usecase">用例</div>
                             <div class="standard_info_usecase" ng-show="standard_info.usecase"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col mt-2 pe-0">
+                        <div class="border rounded column2 standard_list p-2">
+                            <a href="#" ng-repeat="x in standard_info.dependencylist">{{x}}</a>
+                        </div>
+                    </div>
+                    <div class="col mt-2">
+                        <div class="border rounded column2 standard_list p-2">
+                            <a href="#" ng-repeat="x in standard_info.supportlist">{{x}}</a>
                         </div>
                     </div>
                 </div>

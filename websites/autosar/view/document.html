@@ -36,13 +36,13 @@
                             <option ng-repeat="x in supported_status" value="{{x}}">{{x}}</option>
                         </select>
                     </div>
-                    <div class="col-1 pe-0">
+                    <div class="col-2 pe-0">
                         <select class="form-select" ng-model="opts.part_of_standard">
                             <option value="">请选择..</option>
                             <option ng-repeat="x in supported_part_of_standard" value="{{x}}">{{x}}</option>
                         </select>
                     </div>
-                    <div class="col-1">
+                    <div class="col-2">
                         <select class="form-select" ng-model="opts.part_of_release">
                             <option value="">请选择..</option>
                             <option ng-repeat="x in supported_part_of_release" value="{{x}}">{{x}}</option>
@@ -53,8 +53,8 @@
                     <div class="col">{{x.title}}</div>
                     <div class="col-1 pe-0">{{x.identification_no}}</div>
                     <div class="col-1 pe-0">{{x.status}}</div>
-                    <div class="col-1 pe-0">{{x.part_of_standard}}</div>
-                    <div class="col-1">{{x.part_of_release}}</div>
+                    <div class="col-2 pe-0">{{x.part_of_standard}}</div>
+                    <div class="col-2">{{x.part_of_release}}</div>
                 </div>
             </div>
             <div class="col mt-3">
