@@ -107,6 +107,10 @@ exports.info = async (ctx, stdid) =>
 
     /* 获取关联信息 */
     let dependencies = await StandardDependency.findAll({where:{'id':stdid}, raw:true, logging:false});
+    ret['dependencylist'] = dependencies.map((x)=>{ return x.dependency; });
+    let supportes = await StandardDependency.findAll({where:{'dependency':stdid}, raw:true, logging:false});
+    ret['supportlist'] = supportes.map((x)=>{ return x.id; });
+    //console.log(ret['dependencylist'], ret['supportlist']);
     let str = '';
     dependencies.map((x)=>{ str += x.dependency + ',';});
     ret['dependencies'] = str.substr(0, str.length-1);

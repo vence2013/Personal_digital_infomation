@@ -37,3 +37,7 @@
 /* standard display */
 .standard_sel { color: #008B8B; }
 .standard_list>a { margin-right: 20px; }
+.standard_tip { display: table; width: 96%; margin: 0px 3%; line-height: 24px; margin-bottom: 6px; border-bottom: 1px dashed #cccccc; 
+font-style: italic; font-weight: bold; color: #888888; }
+.standard_info>div { display: inline; float: left; margin-right: 20px; color: #000000; }
+.standard_info>div>span { color: #888888; margin-right: 10px; }
